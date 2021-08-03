@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import BudgetForm from "./components/Budget/BudgetForm";
 
 function App(): JSX.Element | null {
 	const [value, setValue] = useState(true);
@@ -10,16 +11,8 @@ function App(): JSX.Element | null {
 	}, [value]);
 
 	return (
-		<main className="App">
-			<div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
-				<div>
-					<div className="text-xl font-medium text-black">
-						ChitChat
-					</div>
-					<p className="text-gray-500">You have a new message!</p>
-				</div>
-				<button onClick={() => setValue(false)}></button>
-			</div>
+		<main className="container w-3/6 mx-auto">
+			<BudgetForm/>
 		</main>
 	);
 }
