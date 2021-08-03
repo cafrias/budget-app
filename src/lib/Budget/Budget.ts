@@ -1,12 +1,8 @@
+import { Account } from "../Account/Account";
+
 export enum Currency {
 	USD = "USD",
 	ARS = "ARS",
-}
-
-interface Account {
-	id: string;
-	name: string;
-	log: [];
 }
 
 interface Category {
@@ -17,7 +13,7 @@ interface Category {
 
 export interface CreateBudgetDTO {
 	name: string;
-	currency: string;
+	currency: Currency;
 }
 
 export default interface Budget {

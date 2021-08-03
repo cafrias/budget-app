@@ -1,12 +1,14 @@
 import React from "react";
-import { useForm, FieldError } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-import { CreateBudgetDTO, Currency } from "../../lib/models/Budget";
+import { CreateBudgetDTO, Currency } from "../../lib/Budget/Budget";
 import Input from "../UI/Input/Input";
 import Select from "../UI/Select/Select";
 import Button from "../UI/Button/Button";
+import useCreateBudget from "../../lib/Budget/useCreateBudget";
 
 function BudgetForm(): JSX.Element {
+	const { mutate } = useCreateBudget();
 	const {
 		register,
 		handleSubmit,
@@ -15,9 +17,7 @@ function BudgetForm(): JSX.Element {
 
 	return (
 		<form
-			onSubmit={handleSubmit((data) => {
-				console.log("Creating", data);
-			})}
+			onSubmit={handleSubmit((data) => { mutate(data) })}
 		>
 			<Input
 				id="budget_name"
