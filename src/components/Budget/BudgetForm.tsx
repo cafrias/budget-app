@@ -1,45 +1,45 @@
 import React from "react";
-import classnames from 'classnames'
+import { useForm, FieldError } from "react-hook-form";
 
-type ControlLayoutProps = {
-	children?: React.ReactNode;
-};
+import { CreateBudgetDTO, Currency } from "../../lib/models/Budget";
+import Input from "../UI/Input/Input";
+import Select from "../UI/Select/Select";
+import Button from "../UI/Button/Button";
 
-const ControlLayout: React.FC<ControlLayoutProps> = ({ children }) => {
-	return <div className="flex flex-col">{children}</div>;
-};
+function BudgetForm(): JSX.Element {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<CreateBudgetDTO>();
 
-type InputType = React.InputHTMLAttributes<HTMLInputElement> & {
-	label: string;
-	id: string;
-};
-
-const Input: React.FC<InputType> = ({ label, id, ...inputAttributes }) => {
 	return (
-		<ControlLayout>
-			<>
-				<label htmlFor={id}>Name</label>
-				<input
-					{...inputAttributes}
-					className={classnames("border-2", inputAttributes.className)}
-					id={id}
-				/>
-			</>
-		</ControlLayout>
-	)
-};
-
-const BudgetForm: React.FC = () => {
-	return (
-		<form>
-			<div className="flex flex-col">
-				<Input
-					id="budget_name"
-					label="Name"
-				/>
-			</div>
+		<form
+			onSubmit={handleSubmit((data) => {
+				console.log("Creating", data);
+			})}
+		>
+			<Input
+				id="budget_name"
+				label="Name"
+				{...register("name", { required: "Name cannot be empty" })}
+				error={errors.name}
+			/>
+			<Select
+				id="budget_currency"
+				label="Currency"
+				{...register("currency")}
+				error={errors.currency}
+			>
+				{Object.values(Currency).map((currency) => (
+					<option key={currency} value={currency}>
+						{currency}
+					</option>
+				))}
+			</Select>
+			<Button type="submit">Create</Button>
 		</form>
 	);
-};
+}
 
 export default BudgetForm;

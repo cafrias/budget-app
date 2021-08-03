@@ -12,7 +12,7 @@ function App(): JSX.Element | null {
 
 	return (
 		<main className="container w-3/6 mx-auto">
-			<BudgetForm/>
+			<BudgetForm />
 		</main>
 	);
 }

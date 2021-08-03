@@ -1,4 +1,4 @@
-enum Currency {
+export enum Currency {
 	USD = "USD",
 	ARS = "ARS",
 }
@@ -13,6 +13,11 @@ interface Category {
 	id: string;
 	name: string;
 	amount: number;
+}
+
+export interface CreateBudgetDTO {
+	name: string;
+	currency: string;
 }
 
 export default interface Budget {
