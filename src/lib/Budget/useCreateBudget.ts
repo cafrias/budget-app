@@ -4,9 +4,11 @@ import { v4 as uuidv4 } from "uuid";
 import budgets from "../../data/budgets";
 import Budget, { CreateBudgetDTO } from "./Budget";
 
-export default function useCreateBudget() {
-	const history = useHistory();
+interface CreateBudgetInput {
+	onSuccess?: (newBudget: Budget) => void
+}
 
+export default function useCreateBudget({ onSuccess }: CreateBudgetInput = {}) {
 	return useMutation(
 		(data: CreateBudgetDTO) => {
 			console.log("Creating budget ...");
@@ -21,7 +23,9 @@ export default function useCreateBudget() {
 		},
 		{
 			onSuccess(data) {
-				history.push(`/budget/${data.id}`);
+				if (onSuccess) {
+					onSuccess(data)
+				}
 			},
 		}
 	);

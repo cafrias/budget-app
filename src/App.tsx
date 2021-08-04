@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import BudgetForm from "./components/Budget/BudgetForm";
-import BudgetList from "./components/Budget/BudgetList";
+import BudgetsPage from "./pages/budget/BudgetsPage";
+import CreateBudgetPage from "./pages/budget/CreateBudgetPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import queryClient from "./queryClient";
 
 function App(): Nullable<JSX.Element> {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<BrowserRouter>
-				<main className="container w-3/6 mx-auto">
-					<Switch>
-						<Route exact path="/">
-							<BudgetList />
-						</Route>
-						<Route path="/budget/new">
-							<BudgetForm />
-						</Route>
-						<Route>
-							<h1>Not found!</h1>
-						</Route>
-					</Switch>
-				</main>
+				<Switch>
+					<Route exact path="/">
+						<BudgetsPage />
+					</Route>
+					<Route path="/budget/new">
+						<CreateBudgetPage />
+					</Route>
+					<Route path="/budget/:budgetId">
+						<CreateBudgetPage />
+					</Route>
+					<Route>
+						<NotFoundPage/>
+					</Route>
+				</Switch>
 			</BrowserRouter>
 		</QueryClientProvider>
 	);
