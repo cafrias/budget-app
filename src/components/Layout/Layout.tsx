@@ -5,43 +5,20 @@ import Navbar from "./Navbar";
 interface LayoutProps {
 	title?: string;
 	children?: React.ReactNode;
-	error?: Error;
 	loading?: boolean;
 }
 
-export default function Layout({
-	title,
-	children,
-	error,
-	loading,
-}: LayoutProps) {
-	if (error) {
-		return <Layout.Container>{error.message}</Layout.Container>;
-	}
-
-	return (
-		<Layout.Container loading={loading}>
-			<Layout.Title text={title} />
-			{children}
-		</Layout.Container>
-	);
-}
-
-interface ContainerProps {
-	children?: React.ReactNode;
-	loading?: boolean;
-}
-Layout.Container = function LayoutContainer({
-	children,
-	loading,
-}: ContainerProps) {
+export default function Layout({ title, children, loading }: LayoutProps) {
 	return (
 		<div>
 			<Navbar loading={loading} />
-			<main className="container w-3/6 mx-auto">{children}</main>
+			<main className="container w-3/6 mx-auto">
+				<Layout.Title text={title} />
+				{children}
+			</main>
 		</div>
 	);
-};
+}
 
 interface TitleProps {
 	text?: string;

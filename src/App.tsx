@@ -1,10 +1,11 @@
 import React from "react";
 import { QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import queryClient from "./queryClient";
 import BudgetsPage from "./pages/budget/BudgetsPage";
 import CreateBudgetPage from "./pages/budget/CreateBudgetPage";
+import ShowBudgetPage from "./pages/budget/ShowBudgetPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import queryClient from "./queryClient";
 
 function App(): Nullable<JSX.Element> {
 	return (
@@ -18,7 +19,7 @@ function App(): Nullable<JSX.Element> {
 						<CreateBudgetPage />
 					</Route>
 					<Route path="/budget/:budgetId">
-						<CreateBudgetPage />
+						<ShowBudgetPage />
 					</Route>
 					<Route>
 						<NotFoundPage/>
