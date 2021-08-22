@@ -6,12 +6,12 @@ const budgets: Budget[] = [
 			{
 				id: "acc_1",
 				name: "Cash",
-				log: [],
+				transactions: [],
 			},
 			{
 				id: "acc_2",
 				name: "HSBC",
-				log: [],
+				transactions: [],
 			},
 		],
 		categories: [
@@ -35,12 +35,12 @@ const budgets: Budget[] = [
 			{
 				id: "acc_2",
 				name: "Cash",
-				log: [],
+				transactions: [],
 			},
 			{
 				id: "acc_3",
 				name: "HSBC",
-				log: [],
+				transactions: [],
 			},
 		],
 		categories: [

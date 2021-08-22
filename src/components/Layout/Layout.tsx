@@ -12,7 +12,7 @@ export default function Layout({ title, children, loading }: LayoutProps) {
 	return (
 		<div>
 			<Navbar loading={loading} />
-			<main className="container w-3/6 mx-auto">
+			<main className="container mr-2 ml-2">
 				<Layout.Title text={title} />
 				{children}
 			</main>

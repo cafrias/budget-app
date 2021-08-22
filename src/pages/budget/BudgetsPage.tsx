@@ -19,7 +19,7 @@ export default function BudgetsPage() {
 		<Layout title="Budgets">
 			<BudgetList>
 				{data.map((bud) => {
-					return <BudgetList.Item data={bud} />;
+					return <BudgetList.Item key={bud.id} data={bud} />;
 				})}
 			</BudgetList>
 			<Link to="/budget/new">Create new budget</Link>

@@ -1,16 +1,27 @@
 import React from "react";
-import Budget from "../../lib/Budget/Budget";
+import Budget, { AggregatedTransactions } from "../../lib/Budget/Budget";
+import CategoryList from "../Category/CategoryList";
 
 interface ShowBudgetProps {
-	data: Budget;
+	budget: Budget;
+	aggregatedTransactions: AggregatedTransactions;
 }
 
 export default function BudgetShow({
-	data,
+	budget,
+	aggregatedTransactions
 }: ShowBudgetProps) {
 	return (
-		<ul>
-			<li>Currency: {data.currency}</li>
-		</ul>
+		<div>
+			<p>Currency: {budget.currency}</p>
+
+			<section>
+				<h2>Categories</h2>
+				<CategoryList
+					data={budget.categories}
+					aggregatedTransactions={aggregatedTransactions}
+				/>
+			</section>
+		</div>
 	);
 }

@@ -12,19 +12,21 @@ interface ShowBudgetPageParams {
 export default function ShowBudgetPage() {
 	const { budgetId } = useParams<ShowBudgetPageParams>();
 
-	const { data, error, isLoading } = useBudget(budgetId);
+	const { budget, aggregatedTransactions, error, isLoading } = useBudget(budgetId);
 
 	if (error) {
 		throw error;
 	}
 
-	if (!data || isLoading) {
+	// FIXME: when checking for `isLoading` should already
+	// have checked for budget and available amounts.
+	if (!aggregatedTransactions || !budget || isLoading) {
 		return <ShowBudgetPage.Loading />;
 	}
 
 	return (
-		<Layout title={data.name}>
-			<BudgetShow data={data} />
+		<Layout title={budget.name}>
+			<BudgetShow budget={budget} aggregatedTransactions={aggregatedTransactions} />
 		</Layout>
 	);
 }
